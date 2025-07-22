@@ -1,0 +1,11 @@
+services:
+  fastapi-app:
+    build:
+      context: .       # directory containing your Dockerfile
+      dockerfile: Dockerfile
+    container_name: employee-api
+    ports:
+      - "8000:9000"
+    environment:
+      - PYTHONUNBUFFERED=1      # Optional: for local development live updates
+    restart: unless-stopped
