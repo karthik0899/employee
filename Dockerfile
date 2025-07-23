@@ -37,6 +37,8 @@ COPY --chown=app:app pyproject.toml uv.lock* ./
 # Copy the rest of the source code
 COPY --chown=app:app . ./
 
+EXPOSE 9000
+
 # Entry point
 ENTRYPOINT ["/bin/bash","docker-entrypoint.sh"]
 
