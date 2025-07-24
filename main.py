@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 import joblib
 import pandas as pd
@@ -8,6 +9,15 @@ rf = joblib.load("rf_attrition_model.pkl")
 label_encoders = joblib.load("label_encoders.pkl")
 
 app = FastAPI(title="Employee Attrition Predictor")
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, replace with your frontend URL like ["http://localhost:3000"]
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Pydantic input model with example
 class EmployeeFeatures(BaseModel):
